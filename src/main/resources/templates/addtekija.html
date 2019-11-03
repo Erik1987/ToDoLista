@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link type="text/css"rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+    <title>ToDoList</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Lisää tehtävä</h1>
+	<div class="container">
+		<div class="col-md-4">
+		<form th:object="${tekija}" th:action="@{save}" action="#" method="post">
+		  	<label for="etunimi">Etunimi</label>
+			<input type="text" id="firstName" th:field="*{firstName}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+		  	<label for="sukunimi">Sukunimi</label>
+			<input type="text" id="lastName" th:field="*{lastName}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+		  	<label for="postiosoite">Postiosoite</label>
+			<input type="text" th:field="*{postiosoite}" />
+			<label for="postitmp">Postitoimipaikka</label>
+			<input type="text" id="postitmp" th:field="*{postitmp}" />
+			<label for="email">Sähköposti</label>
+			<input type="text" id="sahkoposti" th:field="*{sahkoposti}" />
+			
+			<div style="clear: both; display: block; height: 10px;"></div>						
+		  	<label for="lista">Tehtävä</label>
+		  	
+		  	<label for="start">Päivämäärä:</label>
+
+			<input type="date" id="start" name="trip-start"
+       			value="2018-07-22"
+      			min="2019-01-01" max="2019-12-31" th:field="*{lista.dateCreated}"/>
+			<input type="text" id="tehtava" th:field="*{lista.teksti}"/>
+			
+			
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<input type="submit" value="Save"></input>
+		</form>
+	</div>
+	</div>
+</body>
+</html>

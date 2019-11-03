@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+<title>Edit Tekijä</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Edit Book</h1>
+	<div>
+		<form th:object="${tekija}" th:action="@{../save}" action="#"
+			method="post">
+			<input type="hidden" th:field="*{id}" class="form-control" /> <input
+				type="text" th:field="*{firstName}" /> 
+			<input type="text" th:field="*{lastName}" />
+			<input type ="text"th:field="*{postiosoite}" />
+			<input type ="text"th:field="*{postitmp}" />
+			<input type ="text"th:field="*{sahkoposti}" />
+			<div style="clear: both; display: block; height: 10px;"></div>						
+		  	
+		  	<label for="list">Tehtävä</label>
+			 <select id="lista" th:field="*{lista}" class="form-control">
+       			<option th:each="lista: ${listat}" 
+       					th:value="${lista.listaId}" 
+       					th:text="${lista.teksti}"></option>
+    		</select>
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<input type ="submit"class="btn btn-success" value="Save">
+			</input>
+		</form>
+	</div>
+</body>
+</html>

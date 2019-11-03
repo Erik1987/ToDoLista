@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">>
+<head>
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+<link type="text/css"rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+<title>Tervetuloa käyttämään ToDoList Ohjelmaa</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div class="container">
+	<div class="col-md-4">
+		<h1>Tervetuloa käyttämään ToDoList Ohjelmaa</h1>
+	</div>
+	<div class="col-md-4">
+		<h3 th:inline="text">Tervetuloa [[${#httpServletRequest.remoteUser}]]</h3>
+	</div>
+	<div class="col-md-4" style="padding:20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+		</form>
+	</div>
+	<table class="tabletable-striped">
+		<tr>
+			<th>Etunimi</th>
+			<th>Sukunimi</th>
+			<th>Osoite</th>
+			<th>Postitmp</th>
+			<th>Email</th>
+			<th>Luotu</th>
+			<th>Tehtävä</th>
+			<th sec:authorize="hasAuthority('ADMIN')"> </th>
+		</tr>
+
+		<tr th:each="tekija : ${tekijat}">
+			<td	th:text="${tekija.id} + '.'"></td>
+			<td th:text="${tekija.firstName} + '|'"></td>
+			<td th:text="${tekija.lastName} + '|'"></td>
+			<td th:text="${tekija.postiosoite} + '|'"></td> 
+			<td th:text="${tekija.postitmp} + '|'"></td>
+			<td th:text="${tekija.sahkoposti}"></td>
+			<td th:text="${tekija.lista.dateCreated}"></td>
+			<td th:text="${tekija.lista.teksti}"></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${tekija.id})}" class="btn btn-xs btn-danger">Delete</a></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${tekija.id})}">Edit</a></td>
+		</tr>
+	</table>
+	<a href="/add" class="btn btn-success">Add User</a>
+	
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+
+
