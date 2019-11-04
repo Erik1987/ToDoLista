@@ -10,7 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.example.ToDoList.domain.Lista;
+import com.example.ToDoList.domain.TodoItem;
 import com.example.ToDoList.domain.ListaRepository;
 import com.example.ToDoList.domain.Tekija;
 import com.example.ToDoList.domain.TekijaRepository;
@@ -37,8 +37,8 @@ public class ToDoListApplication {
 			log.info("test");
 
 			Date date = new Date(2019, 10, 25);
-			lrepository.save(new Lista(date, "Muista pestä pyykit kello 1200"));
-			lrepository.save(new Lista(date, "Muista tehdä kotitehtävät kello 1600"));
+			lrepository.save(new TodoItem(date, "Muista pestä pyykit kello 1200"));
+			lrepository.save(new TodoItem(date, "Muista tehdä kotitehtävät kello 1600"));
 			trepository.save(new Tekija("Matti", "Meikäläinen", "Meikäläisenkatu 1", "Helsinki", "matti.meikalainen@gmail.com", lrepository.findByTeksti("Muista pestä pyykit kello 1200").get(0)));
 			trepository.save(new Tekija("Malli", "Mallinen", "Mallikatu 1", "Helsinki", "malli.mallinen@gmail.com", lrepository.findByTeksti("Muista tehdä kotitehtävät kello 1600").get(0)));
 

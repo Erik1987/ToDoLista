@@ -15,7 +15,7 @@ public class Tekija {
 	/*Tekija luokka joka viittaa Lista luokkaan, eli täytetään tekijän perustiedot*/
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	private String firstName;
 	private String lastName;
 	private String postiosoite;
@@ -25,7 +25,7 @@ public class Tekija {
 	@ManyToOne
 	@JsonIgnore
 	@JoinColumn(name = "listaId")
-	private Lista lista;
+	private TodoItem todoItem;
 
 	public Tekija() {
 		super();
@@ -44,7 +44,7 @@ public class Tekija {
 	
 
 	public Tekija(String firstName, String lastName, String postiosoite, String postitmp, String sahkoposti,
-			Lista lista) {
+			TodoItem item) {
 		super();
 		
 		this.firstName = firstName;
@@ -52,14 +52,14 @@ public class Tekija {
 		this.postiosoite = postiosoite;
 		this.postitmp = postitmp;
 		this.sahkoposti = sahkoposti;
-		this.lista = lista;
+		this.todoItem = item;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -103,12 +103,12 @@ public class Tekija {
 		this.sahkoposti = sahkoposti;
 	}
 
-	public Lista getLista() {
-		return lista;
+	public TodoItem getLista() {
+		return todoItem;
 	}
 
-	public void setLista(Lista lista) {
-		this.lista = lista;
+	public void setLista(TodoItem lista) {
+		this.todoItem = lista;
 	}
 
 	@Override

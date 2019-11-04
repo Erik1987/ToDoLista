@@ -5,9 +5,9 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface ListaRepository extends CrudRepository<Lista, Long> {
+public interface ListaRepository extends CrudRepository<TodoItem, Long> {
 
-    List<Lista> findByDateCreated(Date dateCreated);
-    List<Lista> findByTeksti(String teksti);
+    List<TodoItem> findByDateCreated(Date dateCreated);
+    List<TodoItem> findByTeksti(String teksti);
     
 }

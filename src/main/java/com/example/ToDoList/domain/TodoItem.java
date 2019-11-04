@@ -16,7 +16,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
-public class Lista {
+public class TodoItem {
 
 	/*Lista luokka jolla suhde Tekija luokkaan, tässä halutaan että käyttäjä syöttää
 	 * päivämäärän sekä muistilistan tekstin, päiväys jolloin luotu pitäisi saada valikosta asetettua*/
@@ -28,17 +28,17 @@ public class Lista {
 	//SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 	private String teksti;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "lista")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "todoItem")
 	private List<Tekija> tekijat; 
 	
-	public Lista() {}
+	public TodoItem() {}
 	
-	public Lista(String teksti) {
+	public TodoItem(String teksti) {
 		super();
 		this.teksti = teksti;
 	}
 
-	public Lista(Date dateCreated, String teksti) {
+	public TodoItem(Date dateCreated, String teksti) {
 		super();
 		this.dateCreated = dateCreated;
 		this.teksti = teksti;
