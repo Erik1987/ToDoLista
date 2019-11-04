@@ -76,10 +76,13 @@ public class TodoItem {
 		this.teksti = teksti;
 	}
 
-	//@Override
-	//public String toString() {
-	//	return "Lista [listaId=" + listaId + ", dateCreated=" + dateCreated + ", teksti=" + teksti + "]";
-	//}
+	/*@Override
+	public String toString() {
+		return "TodoItem [listaId=" + listaId + ", dateCreated=" + dateCreated + ", teksti=" + teksti + ", tekijat="
+				+ tekijat + "]";
+	}*/
+
+	
 	
 	
 }

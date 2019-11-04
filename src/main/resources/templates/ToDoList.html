@@ -21,18 +21,36 @@
 	</div>
 	<table class="tabletable-striped">
 		<tr>
-			<th>Etunimi</th>
-			<th>Sukunimi</th>
-			<th>Osoite</th>
+			<th>Tehtävä: </th>  
+			<th>Päivämäärä: </th> 
+			<th>Yhteystiedot: </th> <!--
 			<th>Postitmp</th>
 			<th>Email</th>
 			<th>Luotu</th>
 			<th>Tehtävä</th>
 			<th sec:authorize="hasAuthority('ADMIN')"> </th>
-		</tr>
+			 -->
+		 </tr>
 
-		<tr th:each="tekija : ${tekijat}">
-			<td	th:text="${tekija.id} + '.'"></td>
+		<tr th:each="item : ${todoitems}">
+			<td	th:text="${item.teksti} + '.'"></td>
+			<td th:text="${item.dateCreated}"></td> 
+			<td th:text="${item.tekijat}"></td> 
+			
+	
+		<!-- 	</tr>
+    <tr th:each="item : ${todoitems}">
+      <td th:each="contact:${item.tekijat}" th:text="${contact.firstName}"></td>
+      <td th:each="contact:${item.tekijat}" th:text="${contact.lastName}"></td>
+      <td th:each="contact:${item.tekijat}" th:text="${contact.postiosoite}"></td>
+      <td th:each="contact:${item.tekijat}" th:text="${contact.postitmp}"></td>
+      <td th:each="contact:${item.tekijat}" th:text="${contact.sahkoposti}"></td>
+      <td th:each="contact:${todoitems}" th:text="${contact.dateCreated}"></td>
+      <td th:each="contact:${todoitems}" th:text="${contact.teksti}"></td>
+    </tr> -->
+    
+
+			<!-- 
 			<td th:text="${tekija.firstName} + '|'"></td>
 			<td th:text="${tekija.lastName} + '|'"></td>
 			<td th:text="${tekija.postiosoite} + '|'"></td> 
@@ -42,7 +60,8 @@
 			<td th:text="${tekija.lista.teksti}"></td>
 			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${tekija.id})}" class="btn btn-xs btn-danger">Delete</a></td>
 			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${tekija.id})}">Edit</a></td>
-		</tr>
+			 -->
+		
 	</table>
 	<a href="/add" class="btn btn-success">Add User</a>
 	

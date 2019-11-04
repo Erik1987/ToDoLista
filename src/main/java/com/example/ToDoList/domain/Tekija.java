@@ -113,8 +113,10 @@ public class Tekija {
 
 	@Override
 	public String toString() {
-		return "Tekija [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", postiosoite="
-				+ postiosoite + ", postitmp=" + postitmp + ", sahkoposti=" + sahkoposti + "]";
+		return  firstName + " " + lastName + ", "
+				+ postiosoite + ", " + postitmp + ", " + sahkoposti;
 	}
+
+	
 
 }

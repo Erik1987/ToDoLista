@@ -43,7 +43,15 @@ public class TekijaController {
     // /ToDoList pääte, pääsivulle
 	@RequestMapping(value = { "/", "/ToDoList" })
 	public String tekijaList(Model model) {
-		model.addAttribute("tekijat", repository.findAll());
+		model.addAttribute("todoitems", listarepository.findAll());
+		log.info("fetch all books");
+		for (TodoItem book : listarepository.findAll()) {
+			for (int i = 0; i < book.getTekijat().size(); i++) {
+				System.out.println("TEKIJAT: " + book.getTekijat().get(i));
+			}
+		System.out.println(book.getTeksti());
+		System.out.println(book.getDateCreated());
+		}
 		return "ToDoList";
 	}
 	
@@ -57,16 +65,24 @@ public class TekijaController {
 		model.addAttribute("lista", new TodoItem());
 		return "addtekija";
 	}
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	// tallennus POSTAUS
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(Tekija tekija) {
-		//repository.save(tekija);
-		System.out.println(tekija.getLista().getDateCreated());
+
+		System.out.println("PAIVA " + tekija.getLista().getDateCreated());
 		System.out.println(tekija.getLista().getTeksti());
-		listarepository.save(new TodoItem(tekija.getLista().getDateCreated(), tekija.getLista().getTeksti()));
+		TodoItem item = listarepository.save(new TodoItem(tekija.getLista().getDateCreated(), tekija.getLista().getTeksti()));
+		Long todoid =   item.getListaId();
+		tekija.setLista(item);
+		
+		repository.save(tekija);
+		
 		log.info("fetch all books");
 		for (TodoItem book : listarepository.findAll()) {
-		System.out.println(book.toString());
+			System.out.println("Taneli " + item.getListaId());
+		System.out.println(book.getTeksti());
+		System.out.println(book.getDateCreated());
 		}
 		
 		return "redirect:ToDoList";
